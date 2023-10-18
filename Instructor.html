@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+<script>
+
+function Instructor(nombre, linea, jornada){
+    this.nombre = nombre;
+    this.linea = linea;
+    this.jornada = jornada;
+}
+
+let instructor1 = new Instructor ('Alfonso', 'Software', 'Mañana')
+console.log({instructor1});
+
+let instructor2 = new Instructor ('Rodolfo', 'Hardware', 'Mañana')
+console.log({instructor2});
+
+let instructor3 = new Instructor ('Paola', 'Etica', 'Tarde')
+console.log({instructor3});
+
+Instructor.prototype.informacionInstructor = function(){
+    console.log(`Instructor(a) ${this.nombre} ` + `de la linea de ${this.linea} ` + `de la jornada ${this.jornada}`);
+}
+Instructor.prototype.programaFormacion = function(){
+    switch(this.linea){
+        case 'Software':
+            return('Analisis y Desarrollo de Software');
+            break;
+        case 'Hardware':
+            return('Administracion de Redes');
+            break;
+        default:
+            return('ERROR no hay registro calificado para este tipo de programa')     
+    }
+}
+
+//Herencia prototipica
+function InstructorPlanta(nombre, linea, jornada, fechavinculacion){
+    this.super = Instructor;
+    this.super(nombre, linea, jornada);
+    this.fechavinculacion = fechavinculacion;
+}
+
+InstructorPlanta.prototype = new Instructor();
+InstructorPlanta.prototype.constructor = Instructor;
+
+InstructorPlanta.prototype.informacionInstructor = function(){
+    console.log(`Instructor(a) de planta ${this.nombre} ` + `de la linea de ${this.linea} ` + `de la jornada ${this.jornada}`);
+}
+InstructorPlanta.prototype.tiempoVinculacion = function(){
+    console.log(`El instructor ${this.nombre} se vinculo hace ${this.fechavinculacion} meses al CBA Mosquera`);
+}
+
+let instructor4 = new InstructorPlanta ('Pablo', 'Software', 'Tarde', '72')
+console.log({instructor4});
+
+
+instructor1.informacionInstructor();
+console.log(`El instructor es del programa de formacion: ${instructor1.programaFormacion()}`);
+
+instructor2.informacionInstructor();
+instructor2.programaFormacion();
+console.log(`El instructor es del programa de formacion: ${instructor2.programaFormacion()}`);
+
+instructor3.informacionInstructor();
+instructor3.programaFormacion();
+console.log(`El instructor es del programa de formacion: ${instructor3.programaFormacion()}`);
+
+instructor4.informacionInstructor();
+instructor4.tiempoVinculacion();
+
+
+</script>
+</body>
+
+</html>

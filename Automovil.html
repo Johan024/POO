@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+<script>
+
+function Automovil(marca, linea, modelo, cilindraje, precio){
+    this.marca = marca;
+    this.linea = linea;
+    this.modelo = modelo;
+    this.cilindraje = cilindraje;
+    this.precio = precio;
+}
+
+let automovil1 = new Automovil ('Chevrolet', 'Aveo', '2017', '1.4', 30000000)
+console.log({automovil1});
+
+let automovil2 = new Automovil ('Toyota', 'Hilux', '2014', '2.5', 120000000)
+console.log({automovil2});
+
+let automovil3 = new Automovil ('Nissan', 'Sentra', '2015', '1.8', 50000000)
+console.log({automovil3});
+
+Automovil.prototype.informacionVehiculo = function(){
+    console.log(`Este es un vehiculo ${this.marca} ` + `de la linea ${this.linea} ` + `modelo ${this.modelo} ` + 
+    `su cilindraje es ${this.cilindraje}` + ` y tiene un precio de ${this.precio} de pesos`);
+}
+Automovil.prototype.revisionTecnicoMecanica = function(){
+    console.log(`El vehiculo ${this.marca} ` + `de la linea ${this.linea} ` + `es modelo ${this.modelo}` + 
+    ` por lo cual debe presentar revision tecnico mecanica`)
+}
+Automovil.prototype.generarnivelCombustibleAleatorio = function(){
+} 
+function generarNivelCombustibleAleatorio() {
+    return Math.floor(Math.random() * 100) + 1;
+  }
+  const nivelCombustible = generarNivelCombustibleAleatorio();
+
+
+//Herencia Prototipica
+function Sedan(marca, linea, modelo, cilindraje, precio, numeropasajeros, tipocaja){
+    this.super = Automovil;
+    this.super(marca, linea, modelo, cilindraje, precio);
+    this.numeropasajeros = numeropasajeros;
+    this.tipocaja = tipocaja;
+}
+
+Sedan.prototype = new Automovil();
+Sedan.prototype.constructor = Automovil;
+
+Sedan.prototype.numeroCinturonesSeguridad = function(){
+    console.log(`El vehiculo ${this.linea} cuenta con ${this.numeropasajeros} cinturones de seguridad`)
+}
+
+Sedan.prototype.informacionVehiculo = function(){
+    console.log(`Este es un vehiculo ${this.marca} ` + `de la linea ${this.linea} ` + `modelo ${this.modelo} ` + 
+    `su cilindraje es ${this.cilindraje} ` + `tiene capacidad para ${this.numeropasajeros} pasajeros ` + 
+    `su caja es ${this.tipocaja}`+ ` y tiene un precio de ${this.precio} de pesos`);
+}
+
+let automovil4 = new Sedan('Chevrolet', 'Sedan', '2019', '1.2', '28.000.0000', '4', 'mecanica');
+console.log({automovil4});
+
+
+automovil1.informacionVehiculo();
+automovil1.revisionTecnicoMecanica();
+automovil1.generarnivelCombustibleAleatorio();
+console.log(`El nivel de combustible es: ${nivelCombustible}`);
+
+automovil2.informacionVehiculo();
+automovil2.revisionTecnicoMecanica();
+automovil2.generarnivelCombustibleAleatorio();
+console.log(`El nivel de combustible es: ${nivelCombustible}`);
+
+automovil3.informacionVehiculo();
+automovil3.revisionTecnicoMecanica();
+automovil3.generarnivelCombustibleAleatorio();
+console.log(`El nivel de combustible es: ${nivelCombustible}`);
+
+automovil4.informacionVehiculo();
+automovil4.numeroCinturonesSeguridad();
+</script>
+</body>
+
+</html>

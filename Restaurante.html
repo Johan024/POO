@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+<script>
+
+function Restaurante(plato, cantidad, precio){
+    this.plato = plato;
+    this.cantidad = cantidad;
+    this.precio = precio;
+}
+
+let restaurante1 = new Restaurante ('Pasta', 1, 10000)
+console.log({restaurante1});
+
+let restaurante2 = new Restaurante ('Carne asada', 4, 15000)
+console.log({restaurante2});
+
+let restaurante3 = new Restaurante ('Arroz chino', 2, 12000)
+console.log({restaurante3});
+
+Restaurante.prototype.pedidoRestaurante = function(){
+    console.log(`El cliente pidio ${this.cantidad} plato(s) de ${this.plato}`)
+}
+Restaurante.prototype.valorPedido = function(){
+    const valorPedido = (this.precio * this.cantidad) 
+    console.log(`El valor del pedido es de: ${valorPedido}`)
+}
+Restaurante.prototype.descuentoPedido = function(){
+    if (this.cantidad > 2 && (this.cantidad * this.precio) >= 50000) {
+        const descuento = (this.cantidad * this.precio) * 0.1;
+        const precioFinal = (this.cantidad*this.precio-descuento);
+        console.log(`¡DESCUENTO APLICADO! El precio total con descuento es de: ${precioFinal}`)
+        return `Descuento del 10% aplicado: -$${descuento}`;
+      } else {
+        return "No se aplica descuento para este pedido.";
+      }
+    console.log(`El precio total con descuento es de: ${descuento}`)
+}
+
+//Herencia prototipica
+function RestauranteDomicilio(plato, cantidad, precio, tiempoentrega, valordomicilo){
+    this.super = Restaurante;
+    this.super(plato, cantidad, precio);
+    this.tiempoentrega = tiempoentrega;
+    this.valordomicilo = valordomicilo;
+}
+
+RestauranteDomicilio.prototype = new Restaurante();
+RestauranteDomicilio.prototype.constructor = Restaurante;
+
+let restaurante4 = new RestauranteDomicilio ('Chuleta', 3, 10000, 25, 5000);
+console.log({restaurante4});
+
+RestauranteDomicilio.prototype.informacionRestaurante = function(){
+    console.log(`El cliente pidio ${this.cantidad} plato(s) de ${this.plato} y` + 
+    ` el tiempo de entrega es de ${this.tiempoentrega} minutos`);
+}
+
+RestauranteDomicilio.prototype.valorPedido = function(){
+    const valorPedido = (this.precio * this.cantidad + this.valordomicilo);
+    console.log(`El valor total del pedido (incluyendo el valor del domicilio) es de: ${valorPedido}`);
+}
+
+
+restaurante1.pedidoRestaurante();
+restaurante1.valorPedido();
+restaurante1.descuentoPedido();
+
+restaurante2.pedidoRestaurante();
+restaurante2.valorPedido();
+restaurante2.descuentoPedido();
+
+restaurante3.pedidoRestaurante();
+restaurante3.valorPedido();
+restaurante3.descuentoPedido();
+
+restaurante4.informacionRestaurante();
+restaurante4.valorPedido();
+</script>
+</body>
+
+</html>
