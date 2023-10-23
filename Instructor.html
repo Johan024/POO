@@ -30,13 +30,17 @@ Instructor.prototype.informacionInstructor = function(){
     console.log(`Instructor(a) ${this.nombre} ` + `de la linea de ${this.linea} ` + `de la jornada ${this.jornada}`);
 }
 Instructor.prototype.programaFormacion = function(){
+    //Se utiliza switch para enrutar el codigo en funcion de diferentes opciones
     switch(this.linea){
+        //Cada case es una opcion y se ejecuta si coincide con el valor de la expresion
         case 'Software':
             return('Analisis y Desarrollo de Software');
+            //Cada break hace que salga del switch despues de ejecutar un caso
             break;
         case 'Hardware':
             return('Administracion de Redes');
             break;
+            //Se ejecuta el default si ninguno de los case coincide con la expresion
         default:
             return('ERROR no hay registro calificado para este tipo de programa')     
     }

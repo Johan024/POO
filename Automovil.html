@@ -11,6 +11,7 @@
 
 <script>
 
+//Define la funcion automovil y se le asignan sus parametros
 function Automovil(marca, linea, modelo, cilindraje, precio){
     this.marca = marca;
     this.linea = linea;
@@ -19,6 +20,7 @@ function Automovil(marca, linea, modelo, cilindraje, precio){
     this.precio = precio;
 }
 
+//Se declaran las variables para cada automovil 
 let automovil1 = new Automovil ('Chevrolet', 'Aveo', '2017', '1.4', 30000000)
 console.log({automovil1});
 
@@ -28,6 +30,7 @@ console.log({automovil2});
 let automovil3 = new Automovil ('Nissan', 'Sentra', '2015', '1.8', 50000000)
 console.log({automovil3});
 
+//Se definen los metodos y lo que queremos que nos muestre dentro de un console.log
 Automovil.prototype.informacionVehiculo = function(){
     console.log(`Este es un vehiculo ${this.marca} ` + `de la linea ${this.linea} ` + `modelo ${this.modelo} ` + 
     `su cilindraje es ${this.cilindraje}` + ` y tiene un precio de ${this.precio} de pesos`);
@@ -39,6 +42,7 @@ Automovil.prototype.revisionTecnicoMecanica = function(){
 Automovil.prototype.generarnivelCombustibleAleatorio = function(){
 } 
 function generarNivelCombustibleAleatorio() {
+    //expresion que nos permite generar un numero aleatorio de 1 a 100
     return Math.floor(Math.random() * 100) + 1;
   }
   const nivelCombustible = generarNivelCombustibleAleatorio();
@@ -52,6 +56,7 @@ function Sedan(marca, linea, modelo, cilindraje, precio, numeropasajeros, tipoca
     this.tipocaja = tipocaja;
 }
 
+//Indica que Seda hereda de Automovil
 Sedan.prototype = new Automovil();
 Sedan.prototype.constructor = Automovil;
 
@@ -68,7 +73,7 @@ Sedan.prototype.informacionVehiculo = function(){
 let automovil4 = new Sedan('Chevrolet', 'Sedan', '2019', '1.2', '28.000.0000', '4', 'mecanica');
 console.log({automovil4});
 
-
+//Se llaman todos los metodos para que sean mostrados 
 automovil1.informacionVehiculo();
 automovil1.revisionTecnicoMecanica();
 automovil1.generarnivelCombustibleAleatorio();

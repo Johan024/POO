@@ -29,19 +29,20 @@ Restaurante.prototype.pedidoRestaurante = function(){
     console.log(`El cliente pidio ${this.cantidad} plato(s) de ${this.plato}`)
 }
 Restaurante.prototype.valorPedido = function(){
+    //Multiplica el precio unitario por la cantidad
     const valorPedido = (this.precio * this.cantidad) 
     console.log(`El valor del pedido es de: ${valorPedido}`)
 }
 Restaurante.prototype.descuentoPedido = function(){
+    //Aplica descuento si la cantidad es 2 o mas y si el precio final es 50000 o mas
     if (this.cantidad > 2 && (this.cantidad * this.precio) >= 50000) {
         const descuento = (this.cantidad * this.precio) * 0.1;
         const precioFinal = (this.cantidad*this.precio-descuento);
-        console.log(`¡DESCUENTO APLICADO! El precio total con descuento es de: ${precioFinal}`)
-        return `Descuento del 10% aplicado: -$${descuento}`;
+        return console.log(`¡DESCUENTO APLICADO! El precio total con descuento es de: ${precioFinal}`);
+        //Si no aplica
       } else {
         return "No se aplica descuento para este pedido.";
       }
-    console.log(`El precio total con descuento es de: ${descuento}`)
 }
 
 //Herencia prototipica
@@ -64,6 +65,7 @@ RestauranteDomicilio.prototype.informacionRestaurante = function(){
 }
 
 RestauranteDomicilio.prototype.valorPedido = function(){
+    //Se define el valor del pedido sumando el valor del domicilio
     const valorPedido = (this.precio * this.cantidad + this.valordomicilo);
     console.log(`El valor total del pedido (incluyendo el valor del domicilio) es de: ${valorPedido}`);
 }
